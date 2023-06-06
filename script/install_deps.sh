@@ -99,7 +99,7 @@ install_osqp_eigen() {
         echo "osqp is already installed......"
     else
         cd $TEMP_DIR
-        git clone --recursive https://github.com/oxfordcontrol/osqp
+        git clone --recursive https://github.com/oxfordcontrol/osqp --branch release-0.6.2
         cd osqp
         mkdir build && cd build
         cmake -G "Unix Makefiles" ..
