@@ -133,12 +133,12 @@ install_grid_map() {
 }
 
 install_glog() {
-    sudo apt-get install libgoogle-glog-dev
+    sudo apt-get -y install libgoogle-glog-dev
     echo "glog is installed successfully!"
 }
 
 install_gflags() {
-    sudo apt-get install libgflags-dev
+    sudo apt-get -y install libgflags-dev
     echo "gflags is installed successfully!"
 }
 
