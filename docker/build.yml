@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+    po2:
+        image: ${ARCH}melodic/po2:${TAG}
+        build:
+            context: ${PRODUCTION_PATH}/path_optimizer_2/docker
+            dockerfile: Dockerfile
+        container_name: po2
+        volumes:
+            - type: bind
+              source: ${PRODUCTION_PATH}/path_optimizer_2
+              target: /home/docker_po2/catkin_ws/src/path_optimizer_2
+        command: bash -c "source /opt/ros/melodic/setup.sh;
+                          cd catkin_ws;
+                          catkin build path_optimizer_2;
+                          sleep ${POST_BUILD_SLEEP};"

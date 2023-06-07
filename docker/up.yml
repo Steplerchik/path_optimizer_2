@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+    po2:
+        image: ${ARCH}melodic/po2:${TAG}
+        network_mode: host
+        pid: host
+        container_name: po2
+        env_file: $ENV_FILE
+        environment:
+            - NVIDIA_DRIVER_CAPABILITIES=all
+            - NVIDIA_VISIBLE_DEVICES=all
+            - DISPLAY=$DISPLAY
+            - QT_X11_NO_MITSHM=1
+        tty: true
+        privileged: true
+        runtime: nvidia
+        user: root
+        volumes:
+            - type: bind
+              source: ${PRODUCTION_PATH}/path_optimizer_2
+              target: /home/docker_po2/catkin_ws/src/path_optimizer_2
+            - /dev:/dev:rw
+        command: bash -c "source /opt/ros/melodic/setup.sh;
+                          source ./catkin_ws/devel/setup.bash;
+                          roslaunch path_optimizer_2 demo.launch"
